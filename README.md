@@ -12,9 +12,9 @@ Use Node.js and Express to build an API that performs CRUD operations on users.
 
 ### Download Project Files and Install Dependencies
 
-- **Fork** and **Clone** this repository.
-- **CD into the folder** where you cloned the repository.
-- Type `npm install` to download all dependencies listed inside `package.json`.
+- ~~**Fork** and **Clone** this repository.~~
+- ~~**CD into the folder** where you cloned the repository.~~
+- ~~Type `npm install` to download all dependencies listed inside `package.json`.~~
 
 ### Database access
 
@@ -30,8 +30,8 @@ Now that we have a way to add, update, remove and retrieve data from the provide
 
 ### Start the API and Implement Requirements
 
-- To start the server, type `npm run server` from the root folder (where the _package.json_ file is). The server is configured to restart automatically as you make changes.
-- Add the code necessary to implement the API requirements.
+- ~~To start the server, type `npm run server` from the root folder (where the _package.json_ file is). The server is configured to restart automatically as you make changes.~~
+- ~~Add the code necessary to implement the API requirements.~~
 - **Test the API using _Postman_ as you work through the exercises.**
 
 ### User Schema
@@ -61,13 +61,13 @@ Inside `index.js` add the code necessary to implement the following _endpoints_:
 
 #### Endpoint Specifications
 
-When the client makes a `POST` request to `/api/users`:
+~~When the client makes a `POST` request to `/api/users`:~~
 
-- If the request body is missing the `name` or `bio` property:
+~~- If the request body is missing the `name` or `bio` property:~~
 
-  - cancel the request.
-  - respond with HTTP status code `400` (Bad Request).
-  - return the following JSON response: `{ errorMessage: "Please provide name and bio for the user." }`.
+~~- cancel the request.~~
+~~- respond with HTTP status code `400` (Bad Request).~~
+~~- return the following JSON response: `{ errorMessage: "Please provide name and bio for the user." }`.~~
 
 - If the information about the _user_ is valid:
 
@@ -75,17 +75,18 @@ When the client makes a `POST` request to `/api/users`:
   - return HTTP status code `201` (Created).
   - return the newly created _user document_.
 
-- If there's an error while saving the _user_:
-  - cancel the request.
-  - respond with HTTP status code `500` (Server Error).
-  - return the following JSON object: `{ error: "There was an error while saving the user to the database" }`.
+~~- If there's an error while saving the _user_:~~
+~~- cancel the request.~~
+~~- respond with HTTP status code `500` (Server Error).~~
 
-When the client makes a `GET` request to `/api/users`:
+- return the following JSON object: `{ error: "There was an error while saving the user to the database" }`.
 
-- If there's an error in retrieving the _users_ from the database:
-  - cancel the request.
-  - respond with HTTP status code `500`.
-  - return the following JSON object: `{ error: "The users information could not be retrieved." }`.
+~~When the client makes a `GET` request to `/api/users`:~~
+
+~~- If there's an error in retrieving the _users_ from the database:~~
+~~- cancel the request.~~
+~~- respond with HTTP status code `500`.~~
+~~- return the following JSON object: `{ error: "The users information could not be retrieved." }`.~~
 
 When the client makes a `GET` request to `/api/users/:id`:
 
