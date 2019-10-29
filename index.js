@@ -69,6 +69,22 @@ server.get(`api/users/:id`, (req, res) => {
     });
 });
 
+server.delete(`/api/users/:id`, (res, req) => {
+  users.remove(req.params.id).then(numDeleted => {
+    //if no users are found, 0 should resolve to false
+    if (numDeleted) {
+      res
+        .status(200)
+        .json({ message: `Successfully deleted ${numDeleted} users.` });
+    } else {
+      //if the user cannot be found
+      res
+        .status(404)
+        .json({ message: "The user with the specified ID does not exist." });
+    }
+  });
+});
+
 server.listen(8000, () => {
   console.log("API running on port 8000");
 });
