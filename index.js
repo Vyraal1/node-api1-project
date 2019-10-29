@@ -70,19 +70,55 @@ server.get(`api/users/:id`, (req, res) => {
 });
 
 server.delete(`/api/users/:id`, (res, req) => {
-  users.remove(req.params.id).then(numDeleted => {
-    //if no users are found, 0 should resolve to false
-    if (numDeleted) {
-      res
-        .status(200)
-        .json({ message: `Successfully deleted ${numDeleted} users.` });
-    } else {
-      //if the user cannot be found
-      res
-        .status(404)
-        .json({ message: "The user with the specified ID does not exist." });
-    }
-  });
+  users
+    .remove(req.params.id)
+    .then(numDeleted => {
+      //if no users are found, 0 should resolve to false
+      if (numDeleted) {
+        res
+          .status(200)
+          .json({ message: `Successfully deleted ${numDeleted} users.` });
+      } else {
+        res
+          .status(404)
+          .json({ message: "The user with the specified ID does not exist." });
+      }
+    })
+    .catch(() => {
+      res.status(500).json({ errorMsg: "The user could not be removed." });
+    });
+});
+
+server.put(`api/users/:id`, (res, req) => {
+  const updatedInfo = req.body;
+  const { bio, name } = updatedInfo;
+
+  // check if the data is sanitized (although shouldn't the frontend be doing this?)
+  if (!bio || !name) {
+    res
+      .status(400)
+      .json({ errorMessage: "Please provide name and bio for the user." });
+  } else {
+    users
+      //if the update works correctly, it should return count of users updated
+      .update(req.params.id, updatedInfo)
+      .then(updatedRecords => {
+        if (updatedRecords) {
+          res.status(200).json({
+            message: `Successfully updated ${updatedRecords} record.`
+          });
+        } else {
+          res.status(404).json({
+            message: "The user with the specified ID does not exist."
+          });
+        }
+      })
+      .catch(() => {
+        res
+          .status(500)
+          .json({ errorMsg: "The user information could not be modified." });
+      });
+  }
 });
 
 server.listen(8000, () => {
